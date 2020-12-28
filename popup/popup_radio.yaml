@@ -1,0 +1,424 @@
+action: call-service
+service: browser_mod.popup
+style:
+
+service_data:
+  title: Information
+  hide_header: true
+  deviceID: this
+#  style: |
+#    ha-card {
+#      width: 90%;
+#      height: 90%;
+#    }
+
+#  style:
+#  $: |
+#    .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+#      border-radius: 25px;
+#      border-color: rgba(0,0,0,0.0);
+#    }
+#  .: |
+#    :host {
+#      --mdc-theme-surface: rgba(0,0,0,0);
+#      --secondary-background-color: rgba(0,0,0,0.5);
+#      --ha-card-background: rgba(0,0,0,0.5);
+#    }
+#    :host .content {
+#      width: 90vw;
+#      height: 90vh;
+#     }
+
+  style:
+    .: |
+      :host .content {
+        width: calc(385px);
+        max-width: 90vw;
+      }
+    $: |
+      .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+        background: none !important;
+        border-color: rgba(0,0,0,0.0);
+        box-shadow: '0px 0px rgba(0,0,0,0.0)'
+        box-color: '0px rgba(0,0,0,0.0)'
+        --ha-card-border-shadow: '0px 0px rgba(0,0,0,0.0);
+        --ha-card-box-shadow: none;
+        box-shadow: none;
+        border-shadow: '0px 0px rgba(0,0,0,0.0);
+      }
+  card:
+    type: picture-elements
+    image: local/BG_RADIO_770x1000.png
+    elements:
+
+
+          # # # # # # # # # # # #
+          #        SR P1        #
+          # # # # # # # # # # # #
+      - type: 'custom:button-card'
+#        entity: media_player.alla_hogtalare_inomhus
+       # entity: script.chromecast_hall
+#        data:
+#          media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+#          media_content_type: audio/mp4
+        name: SR P1
+        icon: 'mdi:spotify'
+        entity_picture: /local/RADIO_SRP1_FARG.png
+        tap_action:
+          action: call-service
+          service: script.SverigesRadioP1
+#          service_data:
+#            entity_id: media_player.hall
+        #double_tap_action: !include popup/popup_terass.yaml
+        style:
+          top: 62%
+          left: 32.5px
+          width: 10%
+        show_state: false
+        show_name: false
+        show_icon: false
+        show_units: false
+        show_label: false
+        show_entity_picture: true
+        styles:
+          card:
+            - width: 110px
+            - height: 110px
+          grid:
+#            - grid-template-areas: '"i" "n" "s"'
+#            - grid-template-columns: 1fr
+#            - grid-template-rows: 1fr min-content min-content]
+          img_cell:
+#            - margin-top: '-20%'
+#            - margin-left: '-50%'
+#            - width: 70%
+          name:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-weight: bold
+#            - font-size: 15px
+          icon:
+            - color: '#2AB759'
+            - width: 60%
+            - margin-top: 0%
+          state:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-size: 12px
+        state:
+#          - value: 'off'
+#            styles:
+#              card:
+#                - filter: opacity(50%)
+#              icon:
+#                - filter: grayscale(100%)
+
+
+
+
+          # # # # # # # # # # # #
+          #        SR P3        #
+          # # # # # # # # # # # #
+      - type: 'custom:button-card'
+#        entity: media_player.alla_hogtalare_inomhus
+       # entity: script.chromecast_hall
+#        data:
+#          media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+#          media_content_type: audio/mp4
+        name: SR P3
+        icon: 'mdi:spotify'
+        entity_picture: /local/RADIO_SRP3_FARG.png
+        tap_action:
+          action: call-service
+          service: script.SverigesRadioP3
+#          service_data:
+#            entity_id: media_player.hall
+        #double_tap_action: !include popup/popup_terass.yaml
+        style:
+          top: 62%
+          left: 157.5px
+          width: 10%
+        show_state: false
+        show_name: false
+        show_icon: false
+        show_units: false
+        show_label: false
+        show_entity_picture: true
+        styles:
+          card:
+            - width: 110px
+            - height: 110px
+          grid:
+#            - grid-template-areas: '"i" "n" "s"'
+#            - grid-template-columns: 1fr
+#            - grid-template-rows: 1fr min-content min-content]
+          img_cell:
+#            - margin-top: '-20%'
+#            - margin-left: '-50%'
+#            - width: 70%
+          name:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-weight: bold
+#            - font-size: 15px
+          icon:
+            - color: '#2AB759'
+            - width: 60%
+            - margin-top: 0%
+          state:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-size: 12px
+        state:
+#          - value: 'off'
+#            styles:
+#              card:
+#                - filter: opacity(50%)
+#              icon:
+#                - filter: grayscale(100%)
+
+
+          # # # # # # # # # # # #
+          #        SR P4        #
+          # # # # # # # # # # # #
+      - type: 'custom:button-card'
+#        entity: media_player.alla_hogtalare_inomhus
+       # entity: script.chromecast_hall
+#        data:
+#          media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+#          media_content_type: audio/mp4
+        name: SR P4
+        icon: 'mdi:spotify'
+        entity_picture: /local/RADIO_SRP4_FARG.png
+        tap_action:
+          action: call-service
+          service: script.SverigesRadioP4
+#          service_data:
+#            entity_id: media_player.hall
+        #double_tap_action: !include popup/popup_terass.yaml
+        style:
+          top: 62%
+          left: 282.5px
+          width: 10%
+        show_state: false
+        show_name: false
+        show_icon: false
+        show_units: false
+        show_label: false
+        show_entity_picture: true
+        styles:
+          card:
+            - width: 110px
+            - height: 110px
+          grid:
+#            - grid-template-areas: '"i" "n" "s"'
+#            - grid-template-columns: 1fr
+#            - grid-template-rows: 1fr min-content min-content]
+          img_cell:
+#            - margin-top: '-20%'
+#            - margin-left: '-50%'
+#            - width: 70%
+          name:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-weight: bold
+#            - font-size: 15px
+          icon:
+            - color: '#2AB759'
+            - width: 60%
+            - margin-top: 0%
+          state:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-size: 12px
+        state:
+#          - value: 'off'
+#            styles:
+#              card:
+#                - filter: opacity(50%)
+#              icon:
+#                - filter: grayscale(100%)
+
+
+          # # # # # # # # # # # #
+          #        RIX FM       #
+          # # # # # # # # # # # #
+      - type: 'custom:button-card'
+#        entity: media_player.alla_hogtalare_inomhus
+       # entity: script.chromecast_hall
+#        data:
+#          media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+#          media_content_type: audio/mp4
+        name: RixFm
+        icon: 'mdi:spotify'
+        entity_picture: /local/RADIO_RIXFM_FARG.png
+        tap_action:
+          action: call-service
+          service: script.RixFM
+#          service_data:
+#            entity_id: media_player.hall
+        #double_tap_action: !include popup/popup_terass.yaml
+        style:
+          top: 85%
+          left: 32.5px
+          width: 10%
+        show_state: false
+        show_name: false
+        show_icon: false
+        show_units: false
+        show_label: false
+        show_entity_picture: true
+        styles:
+          card:
+            - width: 110px
+            - height: 110px
+          grid:
+#            - grid-template-areas: '"i" "n" "s"'
+#            - grid-template-columns: 1fr
+#            - grid-template-rows: 1fr min-content min-content]
+          img_cell:
+#            - margin-top: '-20%'
+#            - margin-left: '-50%'
+#            - width: 70%
+          name:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-weight: bold
+#            - font-size: 15px
+          icon:
+            - color: '#2AB759'
+            - width: 60%
+            - margin-top: 0%
+          state:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-size: 12px
+        state:
+#          - value: 'off'
+#            styles:
+#              card:
+#                - filter: opacity(50%)
+#              icon:
+#                - filter: grayscale(100%)
+
+          # # # # # # # # # # # #
+          #       STAR FM       #
+          # # # # # # # # # # # #
+      - type: 'custom:button-card'
+#        entity: media_player.alla_hogtalare_inomhus
+       # entity: script.chromecast_hall
+#        data:
+#          media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+#          media_content_type: audio/mp4
+        name: Star FM
+        icon: 'mdi:spotify'
+        entity_picture: /local/RADIO_STARFM_FARG.png
+        tap_action:
+          action: call-service
+          service: script.StarFM
+#          service_data:
+#            entity_id: media_player.hall
+        #double_tap_action: !include popup/popup_terass.yaml
+        style:
+          top: 85%
+          left: 157.5px
+          width: 10%
+        show_state: false
+        show_name: false
+        show_icon: false
+        show_units: false
+        show_label: false
+        show_entity_picture: true
+        styles:
+          card:
+            - width: 110px
+            - height: 110px
+          grid:
+#            - grid-template-areas: '"i" "n" "s"'
+#            - grid-template-columns: 1fr
+#            - grid-template-rows: 1fr min-content min-content]
+          img_cell:
+#            - margin-top: '-20%'
+#            - margin-left: '-50%'
+#            - width: 70%
+          name:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-weight: bold
+#            - font-size: 15px
+          icon:
+            - color: '#2AB759'
+            - width: 60%
+            - margin-top: 0%
+          state:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-size: 12px
+        state:
+#          - value: 'off'
+#            styles:
+#              card:
+#                - filter: opacity(50%)
+#              icon:
+#                - filter: grayscale(100%)
+          # # # # # # # # # # # #
+          #   LUGNA FAVORITER   #
+          # # # # # # # # # # # #
+      - type: 'custom:button-card'
+#        entity: media_player.alla_hogtalare_inomhus
+       # entity: script.chromecast_hall
+#        data:
+#          media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+#          media_content_type: audio/mp4
+        name: Lugna Favoriter
+        icon: 'mdi:spotify'
+        entity_picture: /local/RADIO_LUGNAFAVORITER_VIT.png
+        tap_action:
+          action: call-service
+          service: script.LugnaFavoriter
+#          service_data:
+#            entity_id: media_player.hall
+        #double_tap_action: !include popup/popup_terass.yaml
+        style:
+          top: 85%
+          left: 282.5px
+          width: 10%
+        show_state: false
+        show_name: false
+        show_icon: false
+        show_units: false
+        show_label: false
+        show_entity_picture: true
+        styles:
+          card:
+            - width: 110px
+            - height: 110px
+          grid:
+#            - grid-template-areas: '"i" "n" "s"'
+#            - grid-template-columns: 1fr
+#            - grid-template-rows: 1fr min-content min-content]
+          img_cell:
+#            - margin-top: '-20%'
+#            - margin-left: '-50%'
+#            - width: 70%
+          name:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-weight: bold
+#            - font-size: 15px
+          icon:
+            - color: '#2AB759'
+            - width: 60%
+            - margin-top: 0%
+          state:
+#            - justify-self: start
+#            - padding-left: 10px
+#            - font-size: 12px
+        state:
+#          - value: 'off'
+#            styles:
+#              card:
+#                - filter: opacity(50%)
+#              icon:
+#                - filter: grayscale(100%)
+

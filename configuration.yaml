@@ -1,0 +1,727 @@
+
+##########################################################################
+#                                                                        #
+#                              * SETTINGS *                              #
+#                                                                        #
+##########################################################################
+
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+#default_config:
+
+#################################################
+#                                               #
+#               HOME ASSISTANT                  #
+#                                               #
+#################################################
+homeassistant:
+  name: Hem
+  unit_system: metric
+  time_zone: Europe/Stockholm
+  packages: !include_dir_named include
+  allowlist_external_dirs: [/config/]
+
+#################################################
+#                                               #
+#                  LOVELACE                     #
+#                                               #
+#################################################
+lovelace:
+  mode: storage
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      title: Hemma
+      icon: mdi:monitor-dashboard
+      show_in_sidebar: true
+      #hidden: true
+      filename: ui-lovelace.yaml
+
+    dashboard-startsida:
+      mode: yaml
+      title: Startsida
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: dashboard-startsida.yaml
+      
+    belysning-yaml:
+      mode: yaml
+      title: Belysning3
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: dashboard-belysning.yaml
+      
+    dashboard-installningar:
+      mode: yaml
+      title: Inställningar
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: dashboard-installningar.yaml
+
+browser_mod:
+
+#################################################
+#                                               #
+#        INKLUDERINGAR FRÅN ANDRA FILER         #
+#                                               #
+#################################################
+input_select: !include seperates_files_input_select.yaml
+#group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+#################################################
+#                                               #
+#                TEXT TO SPEECH                 #
+#                                               #
+#################################################
+tts:
+  - platform: google_translate
+
+#################################################
+#                                               #
+#                  DUCK DNS                     #
+#                                               #
+#################################################
+duckdns:
+  domain: !secret domain
+  access_token: !secret token
+
+#################################################
+#                                               #
+#                      HTTP                     #
+#                                               #
+#################################################
+http:
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  ip_ban_enabled: !secret ip_ban_enable
+
+#################################################
+#                                               #
+#                    HISTORY                    #
+#     Välj vad som skall sparas i history.      #
+#################################################
+history:
+  include:
+    domains:
+      - sensor
+    entities:
+      - input_number.elmatare_pulser_per_min
+      - input_number.flaktskap_temp_left
+      - input_number.flaktskap_temp_right
+      - input_number.flaktskap_speed_left_fan_in
+      - input_number.flaktskap_speed_left_fan_out
+      - input_number.flaktskap_speed_right_fan_in
+      - input_number.flaktskap_speed_right_fan_out
+  exclude:
+    entities:
+      - device_tracker.felicias_iphone
+      - sensor.felicias_iphone_activity
+      - sensor.felicias_iphone_average_active_pace
+      - sensor.felicias_iphone_battery_level
+      - sensor.felicias_iphone_battery_state
+      - sensor.felicias_iphone_bssid
+      - sensor.felicias_iphone_connection_type
+      - sensor.felicias_iphone_distance
+      - sensor.felicias_iphone_floors_ascended
+      - sensor.felicias_iphone_floors_descended
+      - sensor.felicias_iphone_geocoded_location
+      - sensor.felicias_iphone_last_update_trigger
+      - sensor.felicias_iphone_sim_1
+      - sensor.felicias_iphone_ssid
+      - sensor.felicias_iphone_steps
+      - sensor.felicias_iphone_storage
+      
+      - device_tracker.felicias_iphone_2
+      - sensor.felicias_iphone_activity_2
+      - sensor.felicias_iphone_average_active_pace_2
+      - sensor.felicias_iphone_battery_level_2
+      - sensor.felicias_iphone_battery_state_2
+      - sensor.felicias_iphone_bssid_2
+      - sensor.felicias_iphone_connection_type_2
+      - sensor.felicias_iphone_distance_2
+      - sensor.felicias_iphone_floors_ascended_2
+      - sensor.felicias_iphone_floors_descended_2
+      - sensor.felicias_iphone_geocoded_location_2
+      - sensor.felicias_iphone_last_update_trigger_2
+      - sensor.felicias_iphone_sim_1_2
+      - sensor.felicias_iphone_ssid_2
+      - sensor.felicias_iphone_steps_2
+      - sensor.felicias_iphone_storage_2
+
+      - device_tracker.ipaden
+      - sensor.ipaden_activity
+      - sensor.ipaden_battery_level
+      - sensor.ipaden_battery_state
+      - sensor.ipaden_bssid
+      - sensor.ipaden_connection_type
+      - sensor.ipaden_geocoded_location
+      - sensor.ipaden_last_update_trigger
+      - sensor.ipaden_ssid
+      - sensor.ipaden_storage
+
+      - sensor.gronsaksland_temperature
+      - sensor.vardagsrum_temperature
+      - sensor.vardagsrum_gammal_temperature
+
+#################################################
+#                                               #
+#                    MQTT                       #
+# Denna inställningen har inget med nodered     #
+# att göra utan bara föra att använda mqtt      #
+# direct som sensorer etc.                      #
+#################################################
+mqtt:
+  broker: !secret broker
+  username: !secret mqtt_broker_user_name
+  password: !secret mqtt_broker_user_password
+#  protocol: 3.1
+      
+#################################################
+#                                               #
+#               TELLDUS LIVE                    #
+#                                               #
+#################################################
+tellduslive:
+
+#################################################
+#                                               #
+#               INPUT_BOOLEAN                   #
+#                                               #
+#################################################
+input_boolean:
+### Instagramklocka
+  update_instagram:
+    name: Uppdatera Instagram
+  vaxla_instagram_klocka:
+    name: Växla Instagram och Klocka
+  octoprint:
+    name: Octoprint
+### Knappar i hall display
+  on_off_auto_toaflakt:
+    name: Auto Toafläkt
+  on_off_auto_belysningstimer_morgon:
+    name: Auto Belysningstimer Morgon
+  on_off_auto_belysningstimer_kvall:
+    name: Auto Belysningstimer Kväll
+  on_off_samsung_hall_display:
+    name: Samsung halldisplay AV/PÅ
+
+
+#################################################
+#                                               #
+#                  SENSORER                     #
+#                                               #
+#################################################
+sensor:
+### Systemmonitor
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_use_percent
+      - type: processor_use
+      - type: last_boot
+### Filskåp
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+### Teknikskåp
+  - platform: mqtt
+    name: "Vänstra skåpet Temp"
+    state_topic: !secret topic_vanstra_skap_temp
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: "Högra skåpet Temp"
+    state_topic: !secret topic_hogra_skap_temp
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: "Vänstra skåpet Hum"
+    state_topic: !secret topic_vanstra_skap_hum
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: "Högra skåpet Hum"
+    state_topic: !secret topic_hogra_skap_hum
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: "Vänstra skåpet Fläkt In"
+    state_topic: !secret topic_vanstra_skap_fan_in
+    unit_of_measurement: 'PWM'
+  - platform: mqtt
+    name: "Högra skåpet Fläkt In"
+    state_topic: !secret topic_hogra_skap_fan_in
+    unit_of_measurement: 'PWM'
+  - platform: mqtt
+    name: "Vänstra skåpet Fläkt Ut"
+    state_topic: !secret topic_vanstra_skap_fan_out
+    unit_of_measurement: 'PWM'
+  - platform: mqtt
+    name: "Högra skåpet Fläkt Ut"
+    state_topic: !secret topic_hogra_skap_fan_out
+    unit_of_measurement: 'PWM'
+### Strömmätare
+  - platform: mqtt
+    name: "El mätare"
+    state_topic: !secret topic_strom_matare_bpm
+    unit_of_measurement: 'BPM'
+### Liten Display Hall
+  - platform: mqtt
+    name: "Display hall belysning"
+    state_topic: !secret topic_display_hall_belysning
+    unit_of_measurement: '%'
+### Octoprint
+  - platform: mqtt
+    name: "Octoprint procent"
+    state_topic: !secret topic_octoprint
+    value_template: "{{ value_json.progress }}"
+    unit_of_measurement: '%'
+  - platform: mqtt
+    name: "Octoprint status"
+    state_topic: !secret topic_octoprint
+    value_template: "{{ value_json.state.text }}"
+
+# Detta slutade fungera i samband med att instagram uppdaterade sitt gui,. 2020-11-17
+#Instagram Followers
+#  - platform: scrape
+#    resource: https://www.instagram.com/smarthomesimon/
+#    name: Instagram followers
+#    select: 'meta[name="description"]'
+#    attribute: content
+#    value_template: '{{ value.split(" ")[0] }}'
+    
+##############################
+#       Fuktsensor 1         #
+##############################
+### Mqtt
+  - platform: mqtt
+    name: "Sensor 1"
+    icon: mdi:water-percent
+    state_topic: !secret topic_moist_sensor_1
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.sensorPercentage }}"
+    force_update: true
+  - platform: mqtt
+    name: "Sensor 1 Batteri %"
+    state_topic: !secret topic_moist_sensor_1
+    unit_of_measurement: '%'
+    value_template: "{{ value_json.batteryPercentage }}"
+    force_update: true
+  - platform: mqtt
+    name: "Sensor 1 Batteri V"
+    state_topic: !secret topic_moist_sensor_1
+    unit_of_measurement: 'V'
+    value_template: "{{ value_json.batteryV }}"
+    force_update: true
+  - platform: mqtt
+    name: "Sensor 1 Temperatur"
+    state_topic: !secret topic_moist_sensor_1
+    unit_of_measurement: '°C'
+    value_template: "{{ value_json.tempC }}"
+    force_update: true
+### Tid
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+### UPS
+  - platform: apcupsd
+    resources:
+      - apc
+      - date
+      - hostname
+      - version
+      - upsname
+      - cable
+      - driver
+      - upsmode
+      - starttime
+      - model
+      - status
+      - linev
+      - loadpct
+      - bcharge
+      - timeleft
+      - mbattchg
+      - mintimel
+      - maxtime
+      - maxlinev
+      - minlinev
+      - outputv
+      
+#################################################
+#                                               #
+#           INPUT NUMBER (Variabler)            #
+#                                               #
+#################################################
+input_number:
+### Elmätare
+  elmatare_pulser_per_min:
+    name: Pulser per minut
+    initial: -1
+    min: -1
+    max: 65535
+    step: 1
+    unit_of_measurement: ppm
+
+### Fläktskåp
+  flaktskap_speed_left_fan_in:
+    name: Vänster fläkt IN
+    initial: -1
+    min: -1
+    max: 65535
+    step: 1
+    unit_of_measurement: pwm
+  flaktskap_speed_left_fan_out:
+    name: Vänster fläkt UT
+    initial: -1
+    min: -1
+    max: 65535
+    step: 1
+    unit_of_measurement: pwm
+  flaktskap_speed_right_fan_in:
+    name: Höger fläkt IN
+    initial: -1
+    min: -1
+    max: 65535
+    step: 1
+    unit_of_measurement: pwm
+  flaktskap_speed_right_fan_out:
+    name: Höger fläkt UT
+    initial: -1
+    min: -1
+    max: 65535
+    step: 1
+    unit_of_measurement: pwm
+  flaktskap_temp_left:
+    name: Temperatur vänster
+    initial: -1
+    min: -10
+    max: 65535
+    step: 0.10
+    unit_of_measurement: Grader
+  flaktskap_temp_right:
+    name: Temperatur Höger
+    initial: -1
+    min: -10
+    max: 65535
+    step: 0.10
+    unit_of_measurement: Grader
+    
+### Follower counter
+  follower_counter_brightness:
+    name: Brightness
+    initial: 10
+    min: 0
+    max: 255
+    step: 1
+    unit_of_measurement: Percentage
+
+#################################################
+#                                               #
+#                LAMPGRUPPER                    #
+#                                               #
+#################################################
+light:
+### Alla lampor
+  - platform: group
+    name: Alla lampor
+    entities:
+      ### Kontor
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      - light.kontor_fonster
+      ### Vardagsrum
+      - light.vardagsrumsbord
+      - light.vardagsrumsfonster
+      - light.vardagsrum_hornbord
+      ### Sovrum
+      - light.sovrum_tak
+      ### Kök
+      - light.kokstak
+      - light.koksfonster
+      ### Hall
+      - light.hall_spot
+      - light.hall_tak
+      ### Toalett
+      - light.toalettspegel
+      
+### Alla lampor i Vardagsrum
+  - platform: group
+    name: Alla lampor Vardagsrumet
+    entities:
+      ### Vardagsrum
+      - light.vardagsrumsbord
+      - light.vardagsrumsfonster
+      - light.vardagsrum_hornbord
+      
+### Alla lampor i Kontoret
+  - platform: group
+    name: Alla lampor Kontoret
+    entities:
+      ### Kontor
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      - light.kontor_fonster
+      
+### Alla lampor i Köket
+  - platform: group
+    name: Alla lampor Köket
+    entities:
+      ### Kök
+      - light.kokstak
+      - light.koksfonster
+      
+### Alla lampor i Hallen
+  - platform: group
+    name: Alla lampor Hallen
+    entities:
+      ### Hall
+      - light.hall_spot
+      - light.hall_tak
+      
+### Alla lampor i Hallen
+  - platform: group
+    name: Alla lampor Sovrummet
+    entities:
+      ### Sovrum
+      - light.sovrum_tak
+             
+### Display Hall
+  - platform: group
+    name: Display Hall Lampor
+    entities:
+      ### Kontor
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      ### Vardagsrum
+      - light.vardagsrumsbord
+      - light.vardagsrumsfonster
+      - light.vardagsrum_hornbord
+      ### Sovrum
+      - light.sovrum_tak
+      ### Kök
+      - light.kokstak
+     ### Hall
+      - light.hall_spot
+      - light.hall_tak
+
+#################################################
+#                                               #
+#             GENERELLA GRUPPER                 #
+#                                               #
+#################################################
+group:
+### DISPLAY I HALLEN
+  display_hall:
+    name: Display Hall Switch
+    entities:
+      ### Hall
+      - switch.kontor_stringhylla
+### ALLA SWITCHAR
+  all_switches:
+    name: Alla switchar
+    entities:
+      ### Hall
+      - switch.kontor_stringhylla
+      ### Toalett
+      - switch.toalett_turkisk_lampa
+      - switch.toalettflakt
+      
+  # # # # # # # # # # # # # # # # # # # #
+  #  STARTSIDA HALLDISPLAY - BELYSNING  #
+  # # # # # # # # # # # # # # # # # # # #
+### Hall
+  grupp_panel_hall:
+    name: Grupp Hall
+    entities:
+      - light.hall_spot
+      - light.hall_tak
+### Vardagsrum
+  grupp_panel_vardagsrum:
+    name: Grupp Vardagsrum
+    entities:
+      - light.vardagsrumsbord
+      - light.vardagsrum_hornbord
+      - switch.vardagsrum_stjarna
+      - switch.vardagsrum_julgran
+### Kontor
+  grupp_panel_kontor:
+    name: Grupp Kontor
+    entities:
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      - switch.kontor_stringhylla
+### sovrum
+  grupp_panel_sovrum:
+    name: Grupp Sovrum
+    entities:
+      - light.sovrum_tak
+### Kök
+  grupp_panel_kok:
+    name: Grupp Kök
+    entities:
+      - light.kokstak
+### Terass
+  grupp_panel_terass:
+    name: Grupp Terass
+    entities:
+      - switch.terass_ljusslinga
+      
+# # # # # # # # # # # # # # # # # # # #
+#  STARTSIDA HALLDISPLAY - CHROMECAST #
+# # # # # # # # # # # # # # # # # # # #
+  grupp_panel_chromecast_alla_rum_inomhus:
+    name: Grupp alla rum inomhus
+    entities:
+      - media_player.hall
+      - media_player.hall
+      - media_player.kok
+      - media_player.kontor
+      - media_player.toalett
+      - media_player.bose_vardagsrum
+#      - media_player.terrass
+
+# # # # # # # # # # # # # # # # # # # # #
+#  STARTSIDA HALLDISPLAY - ADJÖ (Släck) #
+# # # # # # # # # # # # # # # # # # # # #
+  grupp_panel_adjo:
+    name: Adjö
+    entities:
+      ### Hall
+      - light.hall_tak
+      ### Vardagsrum
+      - light.vardagsrumsbord
+      - light.vardagsrum_hornbord
+      - switch.vardagsrum_stjarna
+      - switch.vardagsrum_julgran
+      ### Kontor
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      - switch.kontor_stringhylla
+      ### Kök
+      - light.kokstak
+      ### Sovrum
+      - light.sovrum_tak
+      ### Garderob
+      - light.garderob_1
+      - light.garderob_2
+      - light.garderob_3
+      
+# # # # # # # # # # # # # # # # # # # # # # # # #
+#  STARTSIDA HALLDISPLAY - VÄLKOMMEN HEM (Tänd) #
+# # # # # # # # # # # # # # # # # # # # # # # # #
+  grupp_panel_valkommen_hem:
+    name: Välkommen hem
+    entities:
+      ### Hall
+      - light.hall_tak
+      ### Vardagsrum
+      - light.vardagsrumsbord
+      - light.vardagsrum_hornbord
+      - switch.vardagsrum_stjarna
+      - switch.vardagsrum_julgran
+      ### Kontor
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      - switch.kontor_stringhylla
+      ### Sovrum
+      - light.sovrum_tak
+      ### Kök
+      - light.kokstak
+
+# # # # # # # # # # # # # # # # # # # #
+#    ALLA LAMPOR, SLÄCKA PÅ KVÄLLEN   #
+# # # # # # # # # # # # # # # # # # # #
+  grupp_alla_lampor:
+    name: Alla lampor
+    entities:
+      ### Hall
+      - light.hall_spot
+      - light.hall_tak
+      ### Kök
+      - light.kokstak
+      - switch.kok_adventsljusstake
+      ### Terass
+      - switch.terass_ljusslinga
+      ### Kontor
+      - light.skrivbord_vanster
+      - light.skrivbord_mitten
+      - light.skrivbord_hoger
+      - light.kontor_fonster
+      - switch.kontor_stringhylla
+      - light.kontor_stjarna
+      ### Sovrum
+      - light.sovrum_tak
+      - light.sovrumsfonster_2
+      - light.koksfonster
+      ### Toalett
+      - light.toalettspegel
+      - switch.toalett_turkisk_lampa
+      - switch.toalettflakt
+      ### Vardagsrum
+      - light.vardagsrumsbord
+      - light.vardagsrumsfonster
+      - light.vardagsrum_hornbord
+      - switch.vardagsrum_stjarna
+      - switch.vsrdagsrum_adventsljudtake
+      - switch.vardagsrum_julgran
+      ### Garderob
+      - light.garderob_1
+      - light.garderob_2
+      - light.garderob_3
+      
+      
+#################################################
+#                                               #
+#                    SPOTIFY                    #
+#                                               #
+#################################################
+### Spotify
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+### Spotcast #https://github.com/fondberg/spotcast
+spotcast:
+  sp_dc: !secret sp_dc
+  sp_key: !secret sp_key
+
+#################################################
+#                                               #
+#                     UPS                       #
+#                                               #
+#################################################
+apcupsd:
+
+#################################################
+#                                               #
+#                HALLDISPLAY                    #
+#                                               #
+#################################################
+display:
+  - platform: fully_kiosk
+    name: Samsung hall display
+    host: !secret host_ip
+    password: !secret host_password
+
+#################################################
+#                                               #
+#                   SWITCH                      #
+#   Gör saker(script) baserat på input_bool     #
+#################################################
+switch:
+  - platform: template
+    switches:
+      on_off_samsung_hall_display:
+        turn_on:
+          service: script.satt_pa_halldisplay
+        turn_off:
+          service: script.stang_av_halldisplay

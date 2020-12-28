@@ -1,0 +1,258 @@
+action: call-service
+service: browser_mod.popup
+style:
+
+service_data:
+  title: Information
+  hide_header: true
+  deviceID: this
+#  style: |
+#    ha-card {
+#      width: 90%;
+#      height: 90%;
+#    }
+
+#  style:
+#  $: |
+#    .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+#      border-radius: 25px;
+#      border-color: rgba(0,0,0,0.0);
+#    }
+#  .: |
+#    :host {
+#      --mdc-theme-surface: rgba(0,0,0,0);
+#      --secondary-background-color: rgba(0,0,0,0.5);
+#      --ha-card-background: rgba(0,0,0,0.5);
+#    }
+#    :host .content {
+#      width: 90vw;
+#      height: 90vh;
+#     }
+
+  style:
+    .: |
+      :host .content {
+        width: calc(385px);
+        max-width: 90vw;
+      }
+    $: |
+      .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+        background: none !important;
+        border-color: rgba(0,0,0,0.0);
+        box-shadow: '0px 0px rgba(0,0,0,0.0)'
+        box-color: '0px rgba(0,0,0,0.0)'
+        --ha-card-border-shadow: '0px 0px rgba(0,0,0,0.0);
+        --ha-card-box-shadow: none;
+        box-shadow: none;
+        border-shadow: '0px 0px rgba(0,0,0,0.0);
+      }
+  card:
+    type: picture-elements
+    image: local/BG_SPOTIFY_LOGO_770x1600.png
+    elements:
+
+      # # # # # # # # # # #
+      #      SPOTIFY      #
+      # # # # # # # # # # #
+      - type: 'custom:mod-card'
+        style:
+          top: 17%
+          left: 50%
+          height: 300px
+          width: 385px
+          border-color: 'rgba(0, 0, 0, 0.0)'
+          box-shadow: '0px 0px rgba(0,0,0,0.0)'
+          '--mini-media-player-artwork-opacity': '1'
+          '--mini-media-player-background-opacity': '0.0'
+          '--mini-media-player-scale': '1.1'
+          '--ha-card-border-shadow': '0px 0px rgba(0,0,0,0.0)'
+          '--mini-media-player-overlay-color-stop': '50%'
+          '--ha-card-box-shadow': 'none'
+#          '--ha-card-border-radius': '20px'
+        card:
+          type: 'custom:mini-media-player'
+          entity: media_player.spotify_simon
+          style:
+#              top: 62%
+#              left: 50.00%
+#              width: 50%
+          artwork: full-cover #cover #none
+          source: icon
+          hide:
+            power: true
+            name: true
+#            info: true
+            icon: true
+            source: true
+            controls: true
+#            prev: true
+#            next: true
+#            play_pause: true
+            volume: true
+#            mute: true
+            progress: true
+#          shortcuts:
+#            columns: 4 # Max buttons per row
+#            buttons:
+#            # KNAPPAR
+#            - icon: mdi:cat
+#              name: Balkonghäng
+#              type: playlist
+#              id: spotify:playlist:7oCQWVqZoqgWkDpFQglcfC
+#            list:
+#            # LISTA
+#            - icon: mdi:cat
+#              name: Balkonghäng
+#              type: playlist
+#              id: spotify:playlist:7oCQWVqZoqgWkDpFQglcfC
+
+      # # # # # # # # # # #
+      #  SPOTIFY KNAPPAR  #
+      # # # # # # # # # # #
+      - type: 'custom:mod-card'
+        style:
+          top: 52.5%
+          left: 50%
+#          height: 300px
+#          width: 335px
+          box-shadow: '0px 0px rgba(0,0,0,0.0)'
+          box-color: '0px rgba(0,0,0,0.0)'
+          '--mini-media-player-artwork-opacity': '0.0'
+          '--mini-media-player-background-opacity': '0.0'
+          '--mini-media-player-scale': '3.0'
+          '--mini-media-player-overlay-color': 'rgba(0,0,0,0.0)'
+          '--ha-card-border-radius': '20px'
+          '--ha-card-border-shadow': '0px 0px rgba(0,0,0,0.0)'
+          '--ha-card-box-shadow': 'none'
+          '--mini-media-player-button-color': 'rgba(0,0,0,0.0)'
+        card:
+          type: 'custom:mini-media-player'
+          entity: media_player.spotify_simon
+          style:
+#            top: 62%
+#            left: 50.00%
+#            width: 50%
+            align_text
+          artwork: none #full-cover #cover
+          source: icon
+          hide:
+            power: true
+            name: true
+            info: true
+            icon: true
+            source: true
+#            controls: true
+#           prev: true
+#            next: true
+#            play_pause: true
+            artwork_border: true
+            volume: true
+            mute: true
+            progress: true
+
+
+          # # # # # # # # # # #
+          #   VÄLJ SPELLISTA  #
+          # # # # # # # # # # #
+#      - type: custom:hui-element
+#        row_type: default
+#        style:
+#          top: 80%
+#          left: 45%
+#          width: 300px
+#          border-radius: 20px
+#          box-shadow: '0px 0px rgba(0,0,0,0.0)'
+ #         '--ha-card-background': 'rgba(150, 150, 150, 1.0)'
+ #         '--ha-card-padding-bottom': '20%'
+ #         '--ha-card-margin-bottom': '20%'
+#          paper-listbox-background-color: '#2AB759'
+#          sidebar-background-color: “#0078a7”
+#          paper-card-background-color: '#2AB759'
+#          paper-listbox-background-color: '#2AB759'
+#          paper-dialog-background-color: '#2AB759'
+#        entity: input_select.spotify_playlist
+
+      # # # # # # # # # # # # # # # #
+      #  VÄLJ ENHET ATT CASTA TILL  #
+      # # # # # # # # # # # # # # # #
+#      - type: custom:hui-element
+#        row_type: default
+#        style:
+#          top: 90%
+#          left: 45%
+#          width: 300px
+#          border-radius: 20px
+#          border-color: 'rgba(0, 0, 0, 0.0)'
+#          box-shadow: '0px 0px rgba(0,0,0,0.0)'
+ #         '--ha-card-background': 'rgba(150, 150, 150, 1.0)'
+#          '--ha-card-padding-bottom': '20%'
+#          '--ha-card-margin-bottom': '20%'
+#          paper-listbox-background-color: '#2AB759'
+#          sidebar-background-color: “#0078a7”
+#          paper-card-background-color: '#2AB759'
+#          paper-listbox-background-color: '#2AB759'
+#          paper-dialog-background-color: '#2AB759'
+#        entity: input_select.spotify_source
+
+
+      # # # # # # # # # # # #
+      # SPOTIFY SPELLISTOR  #
+      # # # # # # # # # # # #
+      - type: 'custom:spotify-card'
+        style:
+          top: 80%
+          left: 50%
+          width: 385px
+#          height: 300px
+          box-shadow: '0px 0px rgba(0,0,0,0.0)'
+          box-color: '0px rgba(0,0,0,0.0)'
+          '--mini-media-player-artwork-opacity': '0.0'
+          '--mini-media-player-background-opacity': '0.0'
+          '--mini-media-player-overlay-color': 'rgba(0,0,0,0.0)'
+          '--ha-card-border-radius': '20px'
+          '--ha-card-border-shadow': '0px 0px rgba(0,0,0,0.0)'
+          '--ha-card-box-shadow': 'none'
+          '--ha-card-background': 'rgba(0,0,0,0.0)'    # <---
+          '--mini-media-player-button-color': 'rgba(0,0,0,0.0)'
+   #       box-shadow: '0px 0px rgba(0,0,0,0.0)'
+           #         '--ha-card-background': 'rgba(150, 150, 150, 1.0)'
+           #         '--ha-card-padding-bottom': '20%'
+           #         '--ha-card-margin-bottom': '20%'
+          paper-listbox-background-color: '#2AB759'
+          #          sidebar-background-color: “#0078a7”
+          paper-card-background-color: '#2AB759'
+          paper-listbox-background-color: '#2AB759'
+          paper-dialog-background-color: '#2AB759'
+
+        hide_top_header: true
+        hide_playback_controls: true
+        hide_currently_playing: false
+        
+        #account: <optional> which account to use for spotcast. Defaults to "default"
+        height: 50% #<optional pixels height for the playlist element. If content is larger scrolling will be enabled>
+        limit: 6 #<optional number of playlists to retrieve (default 10)>
+        device: "Alla högtalare inomhus" #<optional name of a device to pre-select>
+        #playlist_type: <optional featured|discover-weekly> Change type of playlists shown. Default are your normal playlists.
+        always_play_random_song: true #<optional true> Set to start playlists from a random song.
+        #country_code: <optional country code to show featured playlist relevent to a particular country. https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 >
+        hide_warning: true #<optional true> Hide warnings if they are displayed.
+        #name: Test #<optional name> Custom title. Leave empty to hide
+        #display_style: Grid #<optional Grid> Change default display style.
+        #grid_covers_per_row: <optional number> Number of covers per row (default 3) in Grid-view.
+        #spotify_entity: <optional> Name of your spotify media player entity if it doesn't start with "spotify"
+        default_device: "Alla högtalare inomhus" #<optional> Name of your spotify connect or chromecast device, e.g. "Kitchen"
+        filter_devices:          #<optional Array> Hides devices which matches any array entry. The entries have to be regular expressions and are matched against the full device-name. The following are examples
+          - Hall
+          - Badrum
+          - Kök
+          - Toalett
+          - Bose Vardagsrum_
+          - Kontor
+          - SoundTouch-högtalare
+          - VardagsrumTV
+          - Simon_Carlbacks_iPhone_11_Pro
+          - Simons Macbook progres
+          - Alla rum exkl Toalett & Terrass
+          - Alla rum inkl Toalett (exkl Terrassen)
+   #    - .*room <hides all devices ending with room>
+    #   - bath.*,kids.* <hides all devices which start with bath or kids>

@@ -1,0 +1,71 @@
+##########################################################################
+#                                                                        #
+#                              * EXEMPEL *                               #
+#                                                                        #
+##########################################################################
+
+#name:
+#- justify-self: start
+#- padding-left: 10px
+#- font-weight: bold
+#- font-size: 13px
+#
+#name:
+#  [justify-self: start, padding-left: 10px, font-weight: bold, font-size: 13px]
+#
+#   Båda ovanstående sätt att skriva är det samma.
+
+
+##########################################################################
+#                                                                        #
+#                              * LOVELACE *                              #
+#                                                                        #
+##########################################################################
+
+
+##########################################################################
+#                                                                        #
+#                              * SETTINGS *                              #
+#                                                                        #
+##########################################################################
+
+title: Belysning
+
+####    Kioskinställningar ställs i urlen man ansluter till:
+####    Läs mer på: https://github.com/maykar/kiosk-mode
+####
+
+views:
+  - title: Belysning
+    path: dashboard-belysning
+    panel: true
+
+    cards:
+      - type: picture-elements
+        image: local/BG_1200x1920.png
+        elements:
+        
+          - type: 'custom:button-card'
+            name: Belysning sida
+            style:
+              top: 8%
+              left: 30.2%
+            styles:
+              card:
+                [width: 400, height: 100, color: white, background-color: "rgba(0,0,0,0)", box-shadow: 0px 0px 0px 0px ]
+              name:
+                [ont-family: Roboto, font-style: normal, font-weight: 300, font-size: 25px]
+
+          - type: 'custom:button-card'
+            name: Byt sida2
+            tap_action:
+              action: navigate
+              navigation_path: /dashboard-installningar?kiosk
+            style:
+              top: 75%
+              left: 30.2%
+            styles:
+              card:
+                [width: 400, height: 100, color: white, background-color: "rgba(0,0,0,0)", box-shadow: 0px 0px 0px 0px ]
+              name:
+                [ont-family: Roboto, font-style: normal, font-weight: 300, font-size: 25px]

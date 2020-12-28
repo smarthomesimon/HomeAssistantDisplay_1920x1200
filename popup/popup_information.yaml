@@ -1,0 +1,81 @@
+action: call-service
+service: browser_mod.popup
+service_data:
+  title: Information
+  hide_header: true
+  deviceID: this
+  style:
+    .: |
+      :host .content {
+        width: calc(385px + 385px);
+        max-width: 90vw;
+      }
+    $: |
+      .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+        background: none !important;
+        border-color: rgba(0,0,0,0.0);
+        box-shadow: '0px 0px rgba(0,0,0,0.0)'
+        box-color: '0px rgba(0,0,0,0.0)'
+        --ha-card-border-shadow: '0px 0px rgba(0,0,0,0.0);
+        --ha-card-box-shadow: none;
+        box-shadow: none;
+        border-shadow: '0px 0px rgba(0,0,0,0.0);
+      }
+  card:
+    type: custom:layout-card
+    column_num: 2
+    column_width: [385, 385]
+    layout: horizontal
+    cards:
+      ### VÄNSTER COLUMN
+      - type: custom:layout-card
+        layout: vertical
+        cards:
+        ### RUTA 1
+        - type: entities
+          title: Automationer AV/På
+          class: add_header
+          show_header_toggle: false
+          show_header_toggle: false
+          entities:
+            - entity: input_boolean.on_off_auto_toaflakt
+              name: Auto Toafläkt
+            - entity: input_boolean.on_off_auto_belysningstimer_morgon
+              name: Auto Belysningstimer Morgon
+            - entity: input_boolean.on_off_auto_belysningstimer_kvall
+              name: Auto Belysningstimer Kväll
+        ### RUTA 2
+
+
+      ### HÖGER COLUMN
+      - type: custom:layout-card
+        layout: vertical
+        cards:
+        ### RUTA 1
+        - type: entities
+          title: Temperatur
+          class: add_header
+          show_header_toggle: false
+          entities:
+            - entity: sensor.hogra_skapet_temp
+              name: Teknikskåp Höger
+            - entity: sensor.vanstra_skapet_temp
+              name: Teknikskåp Vänster
+            - type: divider
+            - entity: sensor.toalett_rorelse_temp
+              name: Toalett
+        ### RUTA 2
+        - type: entities
+          title: Fuktsensor
+          class: add_header
+          show_header_toggle: false
+          entities:
+            - entity: sensor.sensor_1
+              name: Pelargon Kök
+            - entity: sensor.sensor_1_batteri
+              name: Pelargon Kök Batteri %
+            - entity: sensor.sensor_1_batteri_v
+              name: Pelargon Kök Batteri V
+              
+              
+          

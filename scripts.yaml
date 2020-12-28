@@ -1,0 +1,130 @@
+chromecast_alla_rum:
+  alias: Spotify i alla rum inomhus
+  sequence:
+  - service: spotcast.start
+    data:
+      entity_id: media_player.alla_rum_inkl_toalett_exkl_terrassen
+  mode: single
+chromecast_kontor:
+  alias: Spotify i kontoret
+  sequence:
+  - service: spotcast.start
+    data:
+      entity_id: media_player.kontor
+  mode: single
+chromecast_hall:
+  alias: Spotify i hallen
+  sequence:
+  - service: spotcast.start
+    data:
+      entity_id: media_player.hall
+  mode: single
+spotify:
+  alias: Start Spotify
+  sequence:
+  - service: spotcast.start
+    data_template:
+      entity_id: '{% if is_state("input_select.spotify_source", "Badrum") %} media_player.badrum
+        {% elif is_state("input_select.spotify_source", "Kök") %} media_player.kok
+        {% elif is_state("input_select.spotify_source", "Kontor") %} media_player.kontor
+        {% elif is_state("input_select.spotify_source", "Toalett") %} media_player.toalett
+        {% endif %}
+
+        '
+      uri: '{% if is_state("input_select.spotify_playlist", "Christmas Rock") %} spotify:playlist:30zIqHLjwPVDyXwxduVZCB
+        {% elif is_state("input_select.spotify_playlist", "Lyckliga Toner") %} spotify:playlist:4h2KJwER66DOjLB4WF8t8G
+        {% elif is_state("input_select.spotify_playlist", "Balkonghäng") %} spotify:playlist:7oCQWVqZoqgWkDpFQglcfC
+        {% endif %}
+
+        '
+      random_song: 'true'
+      shuffle: 'true'
+sverigesradiop4:
+  alias: SverigesRadioP4
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+      media_content_id: https://sverigesradio.se/topsy/direkt/203-hi-mp3
+      media_content_type: audio/mp4
+  mode: single
+sverigesradiop3:
+  alias: SverigesRadioP3
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+      media_content_id: https://sverigesradio.se/topsy/direkt/164-hi-mp3
+      media_content_type: audio/mp4
+  mode: single
+sverigesradiop1:
+  alias: SverigesRadioP1
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+      media_content_id: https://sverigesradio.se/topsy/direkt/132-hi-mp3
+      media_content_type: audio/mp4
+  mode: single
+starfm:
+  alias: StarFM
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+      media_content_id: http://fm05-ice.stream.khz.se/fm05_mp3
+      media_content_type: audio/mp4
+  mode: single
+rixfm:
+  alias: RixFM
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+      media_content_id: http://fm01-ice.stream.khz.se/fm01_mp3
+      media_content_type: audio/mp4
+  mode: single
+lugnafavoriter:
+  alias: LugnaFavoriter
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+      media_content_id: http://fm03-ice.stream.khz.se/fm03_mp3
+      media_content_type: audio/mp4
+  mode: single
+mute:
+  alias: Mute
+  sequence:
+  - service: media_player.media_stop
+    data:
+      entity_id: media_player.alla_hogtalare_inomhus
+  mode: single
+adjo:
+  alias: Adjo
+  sequence:
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.grupp_panel_adjo
+  mode: single
+valkommen_hem:
+  alias: Välkommen Hem
+  sequence:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.grupp_panel_valkommen_hem
+  mode: single
+stang_av_halldisplay:
+  alias: Stäng av halldisplay
+  sequence:
+  - service: display.turn_off
+    data:
+      entity_id: display.samsung_hall_display
+  mode: single
+satt_pa_halldisplay:
+  alias: Sätt på halldisplay
+  sequence:
+  - service: display.turn_on
+    data:
+      entity_id: display.samsung_hall_display
+  mode: single

@@ -1,0 +1,423 @@
+##########################################################################
+#                                                                        #
+#                              * EXEMPEL *                               #
+#                                                                        #
+##########################################################################
+
+#name:
+#- justify-self: start
+#- padding-left: 10px
+#- font-weight: bold
+#- font-size: 13px
+#
+#name:
+#  [justify-self: start, padding-left: 10px, font-weight: bold, font-size: 13px]
+#
+#   Båda ovanstående sätt att skriva är det samma.
+
+# Custom card. exempel att länka till annan view finns där.
+# https://github.com/custom-cards/button-card
+
+
+##########################################################################
+#                                                                        #
+#                              * SETTINGS *                              #
+#                                                                        #
+##########################################################################
+custom_header:
+#  header_text: "Test" # See templates section for more on this.
+  show_tabs: 'Belysning, Hemma'
+#  background: black
+  kiosk_mode: true
+#  chevrons: true
+#  compact_mode: true
+#  footer_mode: true
+#  hide_help: true
+
+preload_cards:
+  [map, iframe, markdown]
+preload_rows:
+  [input-select-entity]
+
+anchors:
+  ⚓₁: &title
+    entity: sensor.placeholder
+    tap_action:
+      action: none
+    hold_action:
+      action: none
+    type: state-label
+  ⚓₂: &title-style
+    color: '#bcbebf'
+    font-family: SF Text
+    font-size: 2.4vw
+    font-weight: 500
+    max-width: 1px
+    cursor: default
+
+button_card_templates: !include button_card_templates.yaml
+
+
+##########################################################################
+#                                                                        #
+#                              * LOVELACE *                              #
+#                                                                        #
+##########################################################################
+
+
+title: Hemma2
+views:
+  - panel: true
+    path: default_view
+    id: kiosk_startPage
+    #width: auto !important;
+    cards:
+      - type: picture-elements
+        image: local/BG_3_1200x1920.png
+        aspect_ratio: 1200:1800
+#        background: url('/local/background.png') !important;
+#        background-size: cover !important;
+        elements:
+        
+          # markdown fix
+          - type: custom:hui-element
+            card_type: markdown
+            style: {opacity: 0}
+            content: preload
+
+          #################################################
+          #                                               #
+          #                   COVID-19                    #
+          #                                               #
+          #################################################
+
+          ##########################################################################
+          #                                                                        #
+          #                              * TOPBAR *                                #
+          #                                                                        #
+          ##########################################################################
+
+#          - type: image
+#            image: local/sidebar.png
+#            tap_action:
+#              action: none
+#            hold_action:
+#              action: none
+#            style:
+#              {top: 0%, left: 50%, width: 30%, opacity: 50, pointer-events: none, border-right: '1.5px solid rgba(58,69,73,0.2)'}
+              
+          #################################################
+          #                                               #
+          #                   MARKDOWN                    #
+          #                                               #
+          #################################################
+
+          - type: custom:hui-element
+            row_type: default
+            name: ' '
+            icon: ' '
+            entity: sensor.time
+            style:
+              top: 18.50%
+              left: 38.00%
+ #             ont-family: Roboto
+              font-style: normal
+              font-weight: 100
+              font-size: 180px
+              color: white
+
+
+          #################################################
+          #                                               #
+          #                  INFO BUTTON                  #
+          #                                               #
+          #################################################
+
+          - type: icon
+            icon: mdi:information-outline
+            title: Information
+            style:
+              top: 87.41%
+              left: 10.7%
+              color: rgb(255, 255, 255)
+              opacity: 0.1
+              padding: 0.8vw
+              --mdc-icon-size: 4vw
+            tap_action: !include popup/popup_vardagsrum.yaml
+            double_tap_action: !include popup/information.yaml
+
+          ##########################################################################
+          #                                                                        #
+          #                             * OLIKA RUM *                              #
+          #                                                                        #
+          ##########################################################################
+          
+          - type: 'custom:button-card'
+            name: Belysning
+            style:
+              top: 8%
+              left: 30.2%
+            styles:
+              card:
+                [width: 400, height: 100, color: white, background-color: "rgba(0,0,0,0)", box-shadow: 0px 0px 0px 0px ]
+              name:
+                [ont-family: Roboto, font-style: normal, font-weight: 300, font-size: 25px]
+ 
+         #################################################
+         #                                               #
+         #                   VARDAGSRUM                  #
+         #                                               #
+         #################################################
+          
+          - type: 'custom:button-card'
+            name: Byt sida
+            tap_action:
+              action: navigate
+              navigation_path: /installning-yaml
+            style:
+              top: 75%
+              left: 30.2%
+            styles:
+              card:
+                [width: 400, height: 100, color: white, background-color: "rgba(0,0,0,0)", box-shadow: 0px 0px 0px 0px ]
+              name:
+                [ont-family: Roboto, font-style: normal, font-weight: 300, font-size: 25px]
+          
+
+
+
+          #################################################
+          #                                               #
+          #                   VARDAGSRUM                  #
+          #                                               #
+          #################################################
+
+          - type: 'custom:button-card'
+            entity: light.alla_lampor_vardagsrumet
+            name: Vardagsrum
+            icon: 'mdi:lightbulb'
+            #tap_action: !include popup/popup_vardagsrum.yaml
+            double_tap_action: !include popup/popup_vardagsrum.yaml
+            style:
+              top: 38.50%
+              left: 25.00%
+              width: 10%
+            show_state: true
+            styles:
+              card:
+                [width: 110px, height: 110px ]
+              grid:
+                [grid-template-areas: '"i" "n" "s"', grid-template-columns: 1fr, grid-template-rows: 1fr min-content min-content]
+              img_cell:
+                [ margin-top: '-20%',  margin-left: '-60%', width: 70%]
+              name:
+                [ justify-self: start, padding-left: 10px, font-weight: bold, font-size: 15px ]
+              state:
+                [justify-self: start, padding-left: 10px, font-size: 12px]
+            state:
+              - value: 'off'
+                styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                    
+                    
+
+
+          - type: 'custom:button-card'
+            #entity: light.alla_lampor_vardagsrumet
+            name: Vardagsrum
+            icon: 'mdi:lightbulb'
+            tap_action:
+              action: navigate
+              navigation_path: /belysning-yaml
+            #double_tap_action: !include popup/popup_vardagsrum.yaml
+            #navigation_path: 'ui-belysning.yaml'
+            style:
+              top: 60%
+              left: 25.00%
+              width: 10%
+            show_state: true
+            styles:
+              card:
+                [width: 110px, height: 110px ]
+              grid:
+                [grid-template-areas: '"i" "n" "s"', grid-template-columns: 1fr, grid-template-rows: 1fr min-content min-content]
+              img_cell:
+                [ margin-top: '-20%',  margin-left: '-60%', width: 70%]
+              name:
+                [ justify-self: start, padding-left: 10px, font-weight: bold, font-size: 15px ]
+              state:
+                [justify-self: start, padding-left: 10px, font-size: 12px]
+            state:
+              - value: 'off'
+                styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                    
+          #################################################
+          #                                               #
+          #                   KONTOR                      #
+          #                                               #
+          #################################################
+          
+          - type: 'custom:button-card'
+            entity: light.alla_lampor_kontoret
+            name: Kontor
+            icon: 'mdi:lightbulb'
+            #tap_action: !include popup/popup_vardagsrum.yaml
+            double_tap_action: !include popup/popup_kontor.yaml
+            style:
+              top: 38.50%
+              left: 40.00%
+              width: 10%
+            show_state: true
+            styles:
+              card:
+                [width: 110px, height: 110px ]
+              grid:
+                [grid-template-areas: '"i" "n" "s"', grid-template-columns: 1fr, grid-template-rows: 1fr min-content min-content]
+              img_cell:
+                [ margin-top: '-20%',  margin-left: '-60%', width: 70%]
+              name:
+                [ justify-self: start, padding-left: 10px, font-weight: bold, font-size: 15px ]
+              state:
+                [justify-self: start, padding-left: 10px, font-size: 12px]
+            state:
+              - value: 'off'
+                styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                    
+          #################################################
+          #                                               #
+          #                   HALLEN                      #
+          #                                               #
+          #################################################
+          
+          - type: 'custom:button-card'
+            entity: light.alla_lampor_hallen
+            name: Hall
+            icon: 'mdi:lightbulb'
+            #tap_action: !include popup/popup_vardagsrum.yaml
+            double_tap_action: !include popup/popup_hall.yaml
+            style:
+              top: 38.50%
+              left: 55.00%
+              width: 10%
+            show_state: true
+            styles:
+              card:
+                [width: 110px, height: 110px ]
+              grid:
+                [grid-template-areas: '"i" "n" "s"', grid-template-columns: 1fr, grid-template-rows: 1fr min-content min-content]
+              img_cell:
+                [ margin-top: '-20%',  margin-left: '-60%', width: 70%]
+              name:
+                [ justify-self: start, padding-left: 10px, font-weight: bold, font-size: 15px ]
+              state:
+                [justify-self: start, padding-left: 10px, font-size: 12px]
+            state:
+              - value: 'off'
+                styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+
+          #################################################
+          #                                               #
+          #                   KÖKET                       #
+          #                                               #
+          #################################################
+          
+          - type: 'custom:button-card'
+            entity: light.alla_lampor_koket
+            name: Kök
+            icon: 'mdi:lightbulb'
+            #tap_action: !include popup/popup_vardagsrum.yaml
+            #double_tap_action: !include popup/popup_hall.yaml
+            style:
+              top: 48.00%
+              left: 25.00%
+              width: 10%
+            show_state: true
+            styles:
+              card:
+                [width: 110px, height: 110px ]
+              grid:
+                [grid-template-areas: '"i" "n" "s"', grid-template-columns: 1fr, grid-template-rows: 1fr min-content min-content]
+              img_cell:
+                [ margin-top: '-20%',  margin-left: '-60%', width: 70%]
+              name:
+                [ justify-self: start, padding-left: 10px, font-weight: bold, font-size: 15px ]
+              state:
+                [justify-self: start, padding-left: 10px, font-size: 12px]
+            state:
+              - value: 'off'
+                styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                    
+          #################################################
+          #                                               #
+          #                 SOVRUMMET                     #
+          #                                               #
+          #################################################
+          
+          - type: 'custom:button-card'
+            entity: light.alla_lampor_sovrummet
+            name: Sovrum
+            icon: 'mdi:lightbulb'
+            #tap_action: !include popup/popup_vardagsrum.yaml
+            #double_tap_action: !include popup/popup_hall.yaml
+            style:
+              top: 48.00%
+              left: 40.00%
+              width: 10%
+            show_state: true
+            styles:
+              card:
+                [width: 110px, height: 110px ]
+              grid:
+                [grid-template-areas: '"i" "n" "s"', grid-template-columns: 1fr, grid-template-rows: 1fr min-content min-content]
+              img_cell:
+                [ margin-top: '-20%',  margin-left: '-60%', width: 70%]
+              name:
+                [ justify-self: start, padding-left: 10px, font-weight: bold, font-size: 15px ]
+              state:
+                [justify-self: start, padding-left: 10px, font-size: 12px]
+            state:
+              - value: 'off'
+                styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                    
+          ##########################################################################
+          #                                                                        #
+          #                           * TEMPERATURER *                             #
+          #                                                                        #
+          ##########################################################################
+
+          - type: custom:hui-element
+            row_type: default
+            icon: ' '
+            name: ' '
+            entity: sensor.vanstra_skapet_temp
+            style:
+              top: 50.00%
+              left: 50.00%
+              ont-family: Roboto
+              font-style: normal
+              font-weight: 100
+              font-size: 25px
+              color: white
